@@ -18,10 +18,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from accounts.views import register_view,login_view,logout_view
+from customer.views import customer_dashboard
+from restaurant.views import restaurant_dashboard
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register/",register_view,name='register_view'),
     path('login/',login_view,name='login'),
-    path('logout/',logout_view,name='logout')
+    path('logout/',logout_view,name='logout'),
+    path('customer_dashboard/',customer_dashboard,name='customer_dashboard'),
+    path('restaurant_dashboard/',restaurant_dashboard,name='restaurant_dashboard')
 ]

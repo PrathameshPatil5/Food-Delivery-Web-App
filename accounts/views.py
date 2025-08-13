@@ -45,9 +45,9 @@ def login_view(request):
 
 
             if  user.role=='customer':
-                return redirect('customer') #it is url name
+                return redirect('customer_dashboard') #it is url name
             elif user.role=="restaurant":
-                return redirect('restaurant')
+                return redirect('restaurant_dashboard')
         else :
             return render(request,'login.html',{'error':'invalid_credential'})
     return render (request,'login.html')
