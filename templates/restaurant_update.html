@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Update Dish{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Update Dish</h2>
+
+<form method="post" style="max-width:500px; margin:auto; padding:20px; border:1px solid #ccc; border-radius:10px; background:#f9f9f9;">
+    {% csrf_token %}
+
+    <label for="name">Dish Name:</label><br>
+    <input type="text" id="name" name="name" value="{{ dish.name }}" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="price">Price (₹):</label><br>
+    <input type="number" id="price" name="price" value="{{ dish.price }}" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="qty">Quantity Available:</label><br>
+    <input type="number" id="qty" name="qty" value="{{ dish.qty }}" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="category">Category:</label><br>
+    <select id="category" name="category" required style="width:100%; padding:8px; margin:5px 0;">
+        <option value="">-- Select Category --</option>
+        <option value="Starter" {% if dish.category == "Starter" %}selected{% endif %}>Starter</option>
+        <option value="Main Course" {% if dish.category == "Main Course" %}selected{% endif %}>Main Course</option>
+        <option value="Dessert" {% if dish.category == "Dessert" %}selected{% endif %}>Dessert</option>
+        <option value="Beverage" {% if dish.category == "Beverage" %}selected{% endif %}>Beverage</option>
+    </select><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" style="width:100%; padding:8px; margin:5px 0;">{{ dish.description }}</textarea><br>
+
+    <button type="submit" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;">Update Dish</button>
+</form>
+{% endblock %}

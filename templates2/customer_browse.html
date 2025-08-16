@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Browse Dishes{% endblock %}
+{% block content %}
+  <h2>🍲 Available Dishes</h2>
+  <table border="1" width="100%" cellpadding="10">
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Available</th>
+      <th>Add to Cart</th>
+    </tr>
+    {% for dish in dishes %}
+    <tr>
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.category }}</td>
+      <td>₹{{ dish.price }}</td>
+      <td>{% if dish.is_available %}✅{% else %}❌{% endif %}</td>
+      <td>
+        {% if dish.is_available %}
+        <form method="post" action="{% url 'cart_add' dish.id %}">
+          {% csrf_token %}
+          <input type="number" name="quantity" value="1" min="1" required>
+          <button type="submit">Add</button>
+        </form>
+        {% else %}
+          <span style="color: gray;">Not Available</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" style="text-align:center;">No dishes found.</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

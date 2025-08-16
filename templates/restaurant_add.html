@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Add Dish{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Add New Dish</h2>
+
+<form method="post" style="max-width:500px; margin:auto; padding:20px; border:1px solid #ccc; border-radius:10px; background:#f9f9f9;">
+    {% csrf_token %}
+
+    <label for="name">Dish Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="Enter dish name" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="price">Price (₹):</label><br>
+    <input type="number" id="price" name="price" placeholder="Enter price" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="qty">Quantity Available:</label><br>
+    <input type="number" id="qty" name="qty" placeholder="Enter quantity" required style="width:100%; padding:8px; margin:5px 0;"><br>
+
+    <label for="category">Category:</label><br>
+    <select id="category" name="category" required style="width:100%; padding:8px; margin:5px 0;">
+        <option value="">-- Select Category --</option>
+        <option value="Starter">Starter</option>
+        <option value="Main Course">Main Course</option>
+        <option value="Dessert">Dessert</option>
+        <option value="Beverage">Beverage</option>
+    </select><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" placeholder="Enter description (optional)" style="width:100%; padding:8px; margin:5px 0;"></textarea><br>
+
+    <button type="submit" style="width:100%; padding:10px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;">
+        Add Dish
+    </button>
+</form>
+{% endblock %}

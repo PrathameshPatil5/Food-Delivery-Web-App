@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}My Cart{% endblock %}
+{% block content %}
+<h2>My Cart</h2>
+
+{% if items %}
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>Dish</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+        <td>{{ item.dish.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹{{ item.dish.price }}</td>
+        <td>₹{{ item.total_price }}</td>  {# Use total_price from view #}
+        <td>
+            <a href="/cart/update/{{ item.id }}/">✏️ Edit</a> | 
+            <a href="/cart/delete/{{ item.id }}/">🗑️ Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="/order/create/"><button>Place Order</button></a>
+
+{% else %}
+<p>Your cart is empty. <a href="/customer_dashboard/">Browse dishes</a></p>
+{% endif %}
+{% endblock %}

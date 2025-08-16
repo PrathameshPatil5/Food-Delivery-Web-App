@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Customer Dashboard</title>
-</head>
-<body>
-    <h2>Welcome Customer!</h2>
-    <p>You are logged in as</p>
-    <a href="{% url 'logout' %}">Logout</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Customer Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome, {{ user.username }}</h2>
+<p>Select an option below:</p>
+
+<ul>
+    <li><a href="/customer/browse/">🍽️ Browse Restaurants & Dishes</a></li>
+    <li><a href="/cart/">🛒 View Cart</a></li>
+    <li><a href="/order/">📦 My Orders</a></li>
+</ul>
+{% endblock %}

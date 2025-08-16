@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}My Orders{% endblock %}
+{% block content %}
+<h2>My Orders</h2>
+
+{% if orders %}
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>Order ID</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>{{ order.id }}</td>
+        <td>₹{{ order.total_amount }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.date_created }}</td>
+        <td>
+            <a href="/order/update/{{ order.id }}/">✏️ Update</a> | 
+            <a href="/order/delete/{{ order.id }}/">🗑️ Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No orders found. <a href="/customer_dashboard/">Place an order</a></p>
+{% endif %}
+{% endblock %}

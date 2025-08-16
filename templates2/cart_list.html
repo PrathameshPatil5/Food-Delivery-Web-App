@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}My Cart{% endblock %}
+{% block content %}
+  <h2>🛒 Your Cart</h2>
+
+  <table border="1" width="100%" cellpadding="10">
+    <tr>
+      <th>Dish</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Actions</th>
+    </tr>
+    {% for item in cart_items %}
+    <tr>
+      <td>{{ item.dish.name }}</td>
+      <td>
+        <form method="post" action="{% url 'cart_update' item.id %}">
+          {% csrf_token %}
+          <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+          <button type="submit">Update</button>
+        </form>
+      </td>
+      <td>₹{{ item.dish.price }}</td>
+      <td>₹{{ item.dish.price|floatformat:2|add:item.quantity|mul }}</td>
+      <td>
+        <form method="post" action="{% url 'cart_delete' item.id %}">
+          {% csrf_token %}
+          <button type="submit" style="color:red;">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5" style="text-align:center;">Your cart is empty.</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  {% if cart_items %}
+    <br>
+    <a href="{% url 'order_create' %}">
+      <button style="background:green; color:white;">✅ Place Order</button>
+    </a>
+  {% endif %}
+{% endblock %}

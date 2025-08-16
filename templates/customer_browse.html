@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Browse Dishes{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Browse Dishes</h2>
+<div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:center;">
+    {% for dish in dishes %}
+    <div style="border:1px solid #ccc; padding:15px; border-radius:10px; width:200px; text-align:center;">
+        <h3>{{ dish.name }}</h3>
+        <p>Price: ₹{{ dish.price }}</p>
+        <p>Category: {{ dish.category }}</p>
+        <form method="post" action="{% url 'cart_add' %}">
+            {% csrf_token %}
+            <input type="hidden" name="dish" value="{{ dish.id }}">
+            <input type="number" name="quantity" value="1" min="1" style="width:60px;">
+            <button type="submit" style="padding:5px 10px; margin-top:5px;">Add to Cart</button>
+        </form>
+    </div>
+    {% empty %}
+    <p>No dishes available right now.</p>
+    {% endfor %}
+</div>
+{% endblock %}

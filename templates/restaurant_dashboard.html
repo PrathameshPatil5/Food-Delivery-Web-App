@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Restaurant Dashboard</title>
-</head>
-<body>
-    <h2>Welcome Restaurant!</h2>
-    <p>You are logged in as</p>
-    <a href="{% url 'logout' %}">Logout</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Restaurant Dashboard{% endblock %}
+{% block content %}
+<h2 style="text-align:center; margin-bottom:20px;">Restaurant Dashboard</h2>
+
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; max-width:800px; margin:auto;">
+    <a href="{% url 'restaurant_add' %}" style="padding:20px; border:1px solid #ccc; border-radius:10px; text-decoration:none; background:#28a745; color:white; width:200px; text-align:center;">Add Dish</a>
+    <a href="{% url 'restaurant_list' %}" style="padding:20px; border:1px solid #ccc; border-radius:10px; text-decoration:none; background:#007bff; color:white; width:200px; text-align:center;">View Dishes</a>
+</div>
+{% endblock %}

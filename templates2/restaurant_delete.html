@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Delete Dish{% endblock %}
+{% block content %}
+  <h2>⚠️ Delete Dish</h2>
+  <p>Are you sure you want to delete <strong>{{ dish.name }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'restaurant_list' %}"><button type="button">Cancel</button></a>
+  </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Delete Cart Item{% endblock %}
+{% block content %}
+<h2>Delete Item</h2>
+
+<p>Are you sure you want to remove <b>{{ item.dish.name }}</b> from your cart?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="/cart/">Cancel</a>
+</form>
+{% endblock %}
+

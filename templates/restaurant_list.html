@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Dish List{% endblock %}
+{% block content %}
+<h2>Your Dishes</h2>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    {% for dish in dishes %}
+    <tr>
+        <td>{{ dish.name }}</td>
+        <td>₹{{ dish.price }}</td>
+        <td>{{ dish.description }}</td>
+        <td>
+            <a href="/restaurant_update/{{ dish.id }}/">✏️ Edit</a> | 
+            <a href="/restaurant_delete/{{ dish.id }}/">🗑️ Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No dishes found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
